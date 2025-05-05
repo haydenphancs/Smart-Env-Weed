@@ -27,9 +27,9 @@ void setup() {
   irrecv.enableIRIn();      // Remote
   irrecv.blink13(true);       //Remote
   IrReceiver.begin(RECV_PIN, ENABLE_LED_FEEDBACK); 
-   lcd.init();              // Initialize the LCD
-   lcd.backlight();         // Turn on the backlight
-   Wire.begin();             // Master
+  lcd.init();              // Initialize the LCD
+  lcd.backlight();         // Turn on the backlight
+  Wire.begin();             // Master
 
 }
 

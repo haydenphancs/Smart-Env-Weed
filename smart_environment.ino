@@ -8,7 +8,7 @@
 // Pin definitions
 #define TEMP_HUMIDITY_PIN 2    // DHT22 sensor
 #define MOISTURE_SENSOR_PIN A0 // Soil moisture sensor
-#define LIGHT_SENSOR_PIN A1    // LDR or light sensor
+#define   A1    // LDR or light sensor
 #define FAN_SERVO_PIN 9        // Servo for fan
 #define HEATING_LED_PIN 10     // Heating indicator LED
 #define WATER_PUMP_PIN 11      // Relay for water pump

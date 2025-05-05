@@ -36,8 +36,8 @@
      DHT _dhtSensor;
      
      // Conversion and calibration values
-     int _moistureAirValue;   // Value read when sensor is in air (dry)
-     int _moistureWaterValue; // Value read when sensor is in water (wet)
+     int _moistureAirValue = 1023;   // Value read when sensor is in air (dry)
+     int _moistureWaterValue = 1; // Value read when sensor is in water (wet)
      
      // Threshold values
      const float TEMP_UPPER_THRESHOLD = 27.0; // 80°F
