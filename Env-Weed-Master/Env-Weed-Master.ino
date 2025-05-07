@@ -1,3 +1,6 @@
+// This code is a part of a larger project that involves controlling a smart environment system using an Arduino. 
+//The code includes the use of an LCD display, IR remote control, and various sensors to monitor temperature and moisture levels. 
+//The system can be controlled manually or automatically based on the readings from the sensors.
 #include <IRremote.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>

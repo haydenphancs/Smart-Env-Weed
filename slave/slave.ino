@@ -3,7 +3,8 @@
 // It uses analog sensors to read the values and actuates the devices accordingly.
 // The code also includes serial communication for debugging purposes.
 #include <Wire.h>
-const int lightPin = A1;      // Light sensor connected to 
+const int lightSensor = A1;      // Light sensor connected to 
+const int lightLED = 2;       // light led
 const int waterPumpPin = 10;  // Pin for water pump
 const int moisturePin = A0;  // Soil moisture sensor pin
 int lightLevel = 0;
@@ -18,14 +19,15 @@ void setup() {
     Serial.begin(9600);
     Wire.begin(8); // Join I2C bus with address #8
     Wire.onRequest(requestEvent); // Register event handler for requests
-    pinMode(lightPin, INPUT);
+    pinMode(lightSensor, INPUT);
+    pinMode(lightLED, OUTPUT);
     pinMode(waterPumpPin, OUTPUT);
 
 }
 
 void loop() {
     // Read light level and moisture level
-    lightLevel = analogRead(lightPin);
+    lightLevel = analogRead(lightSensor);
     Serial.println(lightLevel);
     moisture = analogRead(moisturePin);
     // Convert to percentage (inverted because higher analog value means drier soil)
@@ -34,11 +36,11 @@ void loop() {
     moisturePercent = constrain(moisturePercent, 0, 100);
 
     // Actuate water pump based on moisture level
-    if (moisture < moistureThreshold) {
-        digitalWrite(waterPumpPin, HIGH);  // Turn on water pump
-        Serial.println("Water pump ON");
+    if (moisturePercent < moistureThreshold) {
+      digitalWrite(waterPumpPin, HIGH);
+      Serial.println("Water pump ON");
     } else {
-        digitalWrite(waterPumpPin, LOW);   // Turn off water pump
+        digitalWrite(waterPumpPin, LOW);
         Serial.println("Water pump OFF");
     }
     // Print moisture level to serial monitor
@@ -48,15 +50,16 @@ void loop() {
 
     // Actuate light based on light level
     if (lightLevel < 500) { // Adjust threshold as needed
-        digitalWrite(lightPin, HIGH);  // Turn on light
+        digitalWrite(lightLED, HIGH);  // Turn on light
         Serial.println("Light ON");
     } else {
-        digitalWrite(lightPin, LOW);   // Turn off light
+        digitalWrite(lightLED, LOW);   // Turn off light
         Serial.println("Light OFF");
     }
     // Print light level to serial monitor
     Serial.print("Light Level: ");
     Serial.print(lightLevel);  
+    delay(2000);
 }
 
 // Function to handle I2C requests
